@@ -19,6 +19,22 @@ This project is not just about weather; it's a showcase of **production-ready ar
 
 ---
 
+## 📱 Screenshots
+
+<div align="center">
+  <a href="shots/1.jpg"><img src="shots/1.jpg" width="200" alt="Empty State"/></a>
+  &nbsp;&nbsp;&nbsp;
+  <a href="shots/2.jpg"><img src="shots/2.jpg" width="200" alt="Search City"/></a>
+  &nbsp;&nbsp;&nbsp;
+  <a href="shots/3.jpg"><img src="shots/3.jpg" width="200" alt="Stored Cities"/></a>
+  &nbsp;&nbsp;&nbsp;
+  <a href="shots/4.jpg"><img src="shots/4.jpg" width="200" alt="Weather Info"/></a>
+  &nbsp;&nbsp;&nbsp;
+  <a href="shots/5.jpg"><img src="shots/5.jpg" width="200" alt="Forecast Details"/></a>
+</div>
+
+---
+
 ## ✨ Features
 * 📱 **Modern UI/UX:** Built entirely with Jetpack Compose featuring `chrisbanes/haze` for real-time glassmorphism and blur effects.
 * 🎨 **Dynamic Theming:** Status bar and UI elements adapt dynamically based on the brightness of the fetched weather wallpaper.
@@ -89,4 +105,6 @@ pexelsApiKey="YOUR_PEXELS_API_KEY"
 Contributions, issues, and feature requests are welcome!
 
 ## 📝 License
-This project is licensed under the MIT License.
+This project is proprietary and confidential. All rights are reserved. 
+
+You are welcome to explore the source code for educational or portfolio evaluation purposes. However, you are **not** granted any rights to copy, modify, distribute, or use this code (partially or entirely) for your own projects, whether commercial or non-commercial, without explicit written permission from the author.
