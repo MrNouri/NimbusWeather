@@ -36,7 +36,7 @@ This project is not just about weather; it's a showcase of **production-ready ar
 ---
 
 ## ✨ Features
-* 📱 **Modern UI/UX:** Built entirely with Jetpack Compose featuring `chrisbanes/haze` for real-time glassmorphism and blur effects.
+* 📱 **Original & Modern UI/UX:** The entire user interface and experience is exclusively designed and built by me from scratch, featuring `chrisbanes/haze` for real-time glassmorphism and blur effects.
 * 🎨 **Dynamic Theming:** Status bar and UI elements adapt dynamically based on the brightness of the fetched weather wallpaper.
 * 🚀 **Interactive Animations:** Features a fluid, velocity-tracked vertical drag gesture for expanding the weather card.
 * 🖌️ **Custom Canvas Graphics:** Every single loading animation and visual effect is meticulously built from scratch using native Canvas APIs.
