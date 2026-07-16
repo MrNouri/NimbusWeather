@@ -61,6 +61,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -252,9 +253,12 @@ fun MainContent(
     val minCardHeightPx = with(density) { minCardHeight.toPx() }
     val maxCardHeightPx = with(density) { maxCardHeight.toPx() }
 
+    var cardHeightPx by remember { mutableFloatStateOf(minCardHeightPx) }
     val cardHeightAnim = remember { Animatable(minCardHeightPx) }
-    val cardHeight = with(density) { cardHeightAnim.value.toDp() }
-    val cardProgress = ((cardHeightAnim.value - minCardHeightPx) / (maxCardHeightPx - minCardHeightPx)).coerceIn(0f, 1f)
+    var isAnimating by remember { mutableStateOf(false) }
+
+    val cardHeight = with(density) { if (isAnimating) cardHeightAnim.value.toDp() else cardHeightPx.toDp() }
+    val cardProgress = ((if (isAnimating) cardHeightAnim.value else cardHeightPx) - minCardHeightPx) / (maxCardHeightPx - minCardHeightPx)
 
     val basicWeatherAlpha = (1f - ((cardProgress - 0.53f) / 0.63f)).coerceIn(0f, 1f)
 
@@ -277,7 +281,8 @@ fun MainContent(
                 val velocityTracker = VelocityTracker()
                 detectVerticalDragGestures(
                     onDragStart = {
-                        coroutineScope.launch { cardHeightAnim.stop() }
+                        isAnimating = false
+                        velocityTracker.resetTracking()
                     },
                     onVerticalDrag = { change, dragAmount ->
                         change.consume()
@@ -285,37 +290,37 @@ fun MainContent(
                             change.uptimeMillis,
                             change.position
                         )
-                        coroutineScope.launch {
-                            cardHeightAnim.snapTo(
-                                (cardHeightAnim.value - dragAmount)
-                                    .coerceIn(minCardHeightPx, maxCardHeightPx)
-                            )
-                        }
+                        cardHeightPx = (cardHeightPx - dragAmount)
+                            .coerceIn(minCardHeightPx, maxCardHeightPx)
                     },
                     onDragEnd = {
                         val velocity = velocityTracker.calculateVelocity().y
                         velocityTracker.resetTracking()
+                        val snapTarget = when {
+                            velocity < -500f -> maxCardHeightPx
+                            velocity > 500f -> minCardHeightPx
+                            cardHeightPx > (minCardHeightPx + maxCardHeightPx) / 2f -> maxCardHeightPx
+                            else -> minCardHeightPx
+                        }
+                        isAnimating = true
                         coroutineScope.launch {
-                            val snapTarget = when {
-                                velocity < -500f -> maxCardHeightPx
-                                velocity > 500f -> minCardHeightPx
-                                cardHeightAnim.value > (minCardHeightPx + maxCardHeightPx) / 2f -> maxCardHeightPx
-                                else -> minCardHeightPx
-                            }
-
+                            cardHeightAnim.snapTo(cardHeightPx)
                             cardHeightAnim.animateTo(
                                 targetValue = snapTarget,
                                 animationSpec = spring(
                                     dampingRatio = Spring.DampingRatioLowBouncy,
                                     stiffness = Spring.StiffnessLow
                                 )
-
                             )
+                            cardHeightPx = snapTarget
+                            isAnimating = false
                         }
                     },
                     onDragCancel = {
                         velocityTracker.resetTracking()
+                        isAnimating = true
                         coroutineScope.launch {
+                            cardHeightAnim.snapTo(cardHeightPx)
                             cardHeightAnim.animateTo(
                                 targetValue = minCardHeightPx,
                                 animationSpec = spring(
@@ -323,6 +328,8 @@ fun MainContent(
                                     stiffness = Spring.StiffnessMedium
                                 )
                             )
+                            cardHeightPx = minCardHeightPx
+                            isAnimating = false
                         }
                     }
                 )
