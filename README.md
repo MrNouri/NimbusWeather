@@ -37,9 +37,9 @@ This project is not just about weather; it's a showcase of **production-ready ar
 
 ## ⬇️ Download
 
-Download the latest debug APK from the [Releases](https://github.com/MrNouri/NimbusWeather/releases) page.
+Download the latest debug APK from the [Releases](https://github.com/MrNouri/NimbusWeather/blob/master/app/release/app-release.apk) page.
 
-[![Download APK](https://img.shields.io/badge/Download-APK%20(Debug)-blue.svg?style=for-the-badge)](https://github.com/MrNouri/NimbusWeather/releases/latest)
+[![Download APK](https://img.shields.io/badge/Download-APK%20-blue.svg?style=for-the-badge)](https://github.com/MrNouri/NimbusWeather/blob/master/app/release/app-release.apk)
 
 ---
 
