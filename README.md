@@ -35,6 +35,14 @@ This project is not just about weather; it's a showcase of **production-ready ar
 
 ---
 
+## ⬇️ Download
+
+Download the latest debug APK from the [Releases](https://github.com/MrNouri/NimbusWeather/releases) page.
+
+[![Download APK](https://img.shields.io/badge/Download-APK%20(Debug)-blue.svg?style=for-the-badge)](https://github.com/MrNouri/NimbusWeather/releases/latest)
+
+---
+
 ## ✨ Features
 * 📱 **Original & Modern UI/UX:** The entire user interface and experience is exclusively designed and built by me from scratch, featuring `chrisbanes/haze` for real-time glassmorphism and blur effects.
 * 🎨 **Dynamic Theming:** Status bar and UI elements adapt dynamically based on the brightness of the fetched weather wallpaper.

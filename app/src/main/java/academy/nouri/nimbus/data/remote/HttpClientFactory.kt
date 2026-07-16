@@ -1,5 +1,6 @@
 package academy.nouri.nimbus.data.remote
 
+import academy.nouri.nimbus.BuildConfig
 import academy.nouri.nimbus.data.utils.Constants.API_KEY_WALLPAPER
 import academy.nouri.nimbus.data.utils.Constants.API_KEY_WEATHER
 import academy.nouri.nimbus.data.utils.Constants.AUTHORIZATION
@@ -38,9 +39,11 @@ object HttpClientFactory {
             requestTimeoutMillis = HTTP_TIME_OUT
             connectTimeoutMillis = HTTP_TIME_OUT
         }
-        install(Logging) {
-            level = LogLevel.ALL
-            logger = Logger.ANDROID
+        if (BuildConfig.DEBUG) {
+            install(Logging) {
+                level = LogLevel.BODY
+                logger = Logger.ANDROID
+            }
         }
     }
 
